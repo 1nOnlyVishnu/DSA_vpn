@@ -13,18 +13,19 @@ class Solution {
         if(head == null) return null;
 
         if(head.next == null) return head;
-       ListNode temp = head;
-       ListNode after = temp;
-       ListNode before = null;
 
-       while(temp!=null){
-        after = temp.next;
-        temp.next = before;
-        before = temp;
-        temp = after;
-       }
+        ListNode temp = head;
+        ListNode after = temp;
+        ListNode before = null;
 
-       return before;
-      
+
+        while(temp!=null){
+            after = temp.next;
+            temp.next = before;
+            before = temp;
+            temp = after;
+        }
+
+        return before;
 }
 }
