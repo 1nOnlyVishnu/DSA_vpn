@@ -9,19 +9,12 @@ class MyStack {
     public void push(int x) {
         queue.offer(x); //adds element from the rear of the queue bruh
 
-        // while(!queue1.isEmpty()){
-        //    queue2.offer(queue1.element()); // element() is like peek()
-        //    queue1.poll(); //poll() is like remove() or pop()
-        // }
 
         for(int i = 0;i<queue.size()-1;i++){
-            queue.offer(queue.element());
-            queue.poll();
+            queue.offer(queue.poll());
+            
         }
 
-        // Queue<Integer> temp = queue1;
-        // queue1 = queue2;
-        // queue2 = temp;
     }
     
     public int pop() {
