@@ -1,37 +1,41 @@
 class MyStack {
 
-    Queue<Integer> queue1 = new LinkedList<>();
-    Queue<Integer> queue2 = new LinkedList<>();
+    Queue<Integer> queue = new LinkedList<>();
 
     public MyStack() {
 
     }
     
     public void push(int x) {
-        queue2.offer(x); //adds element from the rear of the queue bruh
+        queue.offer(x); //adds element from the rear of the queue bruh
 
-        while(!queue1.isEmpty()){
-           queue2.offer(queue1.element()); // element() is like peek()
-           queue1.poll(); //poll() is like remove() or pop()
+        // while(!queue1.isEmpty()){
+        //    queue2.offer(queue1.element()); // element() is like peek()
+        //    queue1.poll(); //poll() is like remove() or pop()
+        // }
+
+        for(int i = 0;i<queue.size()-1;i++){
+            queue.offer(queue.element());
+            queue.poll();
         }
 
-        Queue<Integer> temp = queue1;
-        queue1 = queue2;
-        queue2 = temp;
+        // Queue<Integer> temp = queue1;
+        // queue1 = queue2;
+        // queue2 = temp;
     }
     
     public int pop() {
-        int x = queue1.element();
-        queue1.poll();
+        int x = queue.element();
+        queue.poll();
         return x;
     }
     
     public int top() {
-        return queue1.peek();
+        return queue.peek();
     }
     
     public boolean empty() {
-        if(queue1.isEmpty())
+        if(queue.isEmpty())
             return true;
         else 
             return false;
@@ -47,7 +51,7 @@ class MyStack {
  * int param_3 = obj.top();
  * boolean param_4 = obj.empty();
 
- c++ code 
+~~~~~~~~~~~~~~~ c++ code ~~~~~~~~~~~~~~~~~~~~
  class MyStack {
 public:
 
@@ -86,5 +90,48 @@ public:
        return que1.empty();
     }
 };
+
+~~~~~~~~~~~~  Java Code for implementing stacks using Two queues ~~~~~~~~~
+
+class MyStack {
+
+    Queue<Integer> queue1 = new LinkedList<>();
+    Queue<Integer> queue2 = new LinkedList<>();
+
+    public MyStack() {
+
+    }
+    
+    public void push(int x) {
+        queue2.offer(x); //adds element from the rear of the queue bruh
+
+        while(!queue1.isEmpty()){
+           queue2.offer(queue1.element()); // element() is like peek()
+           queue1.poll(); //poll() is like remove() or pop()
+        }
+
+        Queue<Integer> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
+    }
+    
+    public int pop() {
+        int x = queue1.element();
+        queue1.poll();
+        return x;
+    }
+    
+    public int top() {
+        return queue1.peek();
+    }
+    
+    public boolean empty() {
+        if(queue1.isEmpty())
+            return true;
+        else 
+            return false;
+    
+    }
+}
 
  */
