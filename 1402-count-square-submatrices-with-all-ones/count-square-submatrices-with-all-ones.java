@@ -3,7 +3,7 @@ class Solution {
         int rows = matrix.length;
         int cols = matrix[0].length;
         
-        int[][] dp = new int[rows][cols];  // dp[i][j] = largest square ending at (i, j)
+        int[][] dp = new int[rows][cols];  
         int total = 0;
 
         for (int i = 0; i < rows; i++) {
