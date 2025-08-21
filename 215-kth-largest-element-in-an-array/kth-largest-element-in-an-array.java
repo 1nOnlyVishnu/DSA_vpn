@@ -3,7 +3,6 @@ class Solution {
 
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
-        Arrays.sort(nums);
 
         for(int i = 0;i<nums.length;i++){
             minHeap.add(nums[i]);
