@@ -3,21 +3,57 @@ class Solution {
         int n = nums.length;
         int start = 0;
         int end = n - 1;
-        
-int first = -1;
-int last = -1;
 
-for(int i = 0;i<n;i++){
-    if(nums[i] == target){
-        if(first == -1){
-            first = i;
-        }
-        last = i;
+    int firstOcc =  binarySearchForFirstOcc(nums,target);
+    int secondOcc = binarySearchForSecondOcc(nums,target);
+
+    int[] ans = {firstOcc,secondOcc};
+
+    return ans;
+
     }
-}
 
-int[] ans = {first,last};
+    public int binarySearchForFirstOcc(int[] nums, int target){
+        int start = 0;
+        int end = nums.length - 1;
+        
+        int ans = -1;
 
-return ans;
+        while(start<=end){
+            int mid = start + (end - start)/2;
+            if(nums[mid] == target){
+                ans = mid;
+                end = mid - 1;
+            }else if(nums[mid] >  target){
+                end = mid -1;
+            }else{
+                start = mid + 1;
+            }
+        }
+
+        return ans;
+    }
+
+    
+
+    public int binarySearchForSecondOcc(int[] nums, int target){
+        int start = 0;
+        int end = nums.length - 1;
+        
+        int ans = -1;
+
+        while(start<=end){
+            int mid = start + (end - start)/2;
+            if(nums[mid] == target){
+                ans = mid;
+                start = mid + 1;
+            }else if(nums[mid] >  target){
+                end = mid -1;
+            }else{
+                start = mid + 1;
+            }
+        }
+
+        return ans;
     }
 }
