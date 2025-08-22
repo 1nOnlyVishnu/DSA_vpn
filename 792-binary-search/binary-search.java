@@ -5,7 +5,7 @@ class Solution {
         int right = n - 1;
 
         // if(n == 1){
-        //     return nums[0];
+        //     return 0;
         // }
 
         while(left<= right){
