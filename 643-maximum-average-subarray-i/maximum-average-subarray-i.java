@@ -2,10 +2,7 @@ class Solution {
     public double findMaxAverage(int[] nums, int k) {
         double avg = Double.NEGATIVE_INFINITY;
         double ans = 0.0;
-        // if(nums.length == 1){
-        //    ans =  nums[0]/1;
-        //    return ans;
-        // }
+       
 
         int i = 0;
         int j = 0;
