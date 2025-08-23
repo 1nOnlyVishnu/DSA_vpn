@@ -5,7 +5,7 @@ class Solution {
             int m = l + (r - l) / 2;
             if (nums[m] == target) return m;
 
-            // Left half is sorted
+
             if (nums[l] <= nums[m]) {
                 if (nums[l] <= target && target < nums[m]) r = m - 1;
                 else l = m + 1;
