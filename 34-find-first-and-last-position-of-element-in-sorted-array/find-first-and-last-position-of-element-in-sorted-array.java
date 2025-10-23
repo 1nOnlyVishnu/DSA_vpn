@@ -1,58 +1,49 @@
 class Solution {
-    public int[] searchRange(int[] nums, int target) {
-        int n = nums.length;
-        int start = 0;
-        int end = n - 1;
-
-    int firstOcc =  binarySearchForFirstOcc(nums,target);
-    int secondOcc = binarySearchForSecondOcc(nums,target);
-
-    int[] ans = {firstOcc,secondOcc};
-
-    return ans;
-
-    }
-
-    public int binarySearchForFirstOcc(int[] nums, int target){
+    private int firstOcc(int[] nums,int target){
         int start = 0;
         int end = nums.length - 1;
-        
-        int ans = -1;
 
+        int res = -1;
+        
         while(start<=end){
-            int mid = start + (end - start)/2;
-            if(nums[mid] == target){
-                ans = mid;
+            int mid = start + (end-start)/2;
+            if(target == nums[mid]){
+                res = mid;
+                end = mid -1;
+            }else if(target < nums[mid]){
                 end = mid - 1;
-            }else if(nums[mid] >  target){
-                end = mid -1;
             }else{
                 start = mid + 1;
             }
         }
-
-        return ans;
+        return res;
     }
 
-    
-
-    public int binarySearchForSecondOcc(int[] nums, int target){
+        private int lastOcc(int[] nums,int target){
         int start = 0;
         int end = nums.length - 1;
-        
-        int ans = -1;
 
+        int res = -1;
+        
         while(start<=end){
-            int mid = start + (end - start)/2;
-            if(nums[mid] == target){
-                ans = mid;
+            int mid = start + (end-start)/2;
+            if(target == nums[mid]){
+                res = mid;
                 start = mid + 1;
-            }else if(nums[mid] >  target){
-                end = mid -1;
+            }else if(target < nums[mid]){
+                end = mid - 1;
             }else{
                 start = mid + 1;
             }
         }
+        return res;
+    }
+
+    public int[] searchRange(int[] nums, int target) {
+        int index1 = firstOcc(nums,target);
+        int index2 = lastOcc(nums,target);
+
+        int[] ans = {index1,index2};
 
         return ans;
     }
