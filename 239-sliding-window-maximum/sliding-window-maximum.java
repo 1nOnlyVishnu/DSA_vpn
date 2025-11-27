@@ -26,12 +26,12 @@ class Solution {
             else if(j - i + 1 == k){
                 // answer -> calculation;
                 ans[i] = dq.peek();
-                // slide the window
-                // calculation
+                // slide the window ---> 2 work to do...
+                // i) calculation
                 if(nums[i] == dq.peek()){
                     dq.removeFirst();
                 }
-                // now slide the pointer
+                // ii) now slide the pointer
                 i++;
                 j++;
             }
