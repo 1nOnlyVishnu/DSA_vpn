@@ -1,34 +1,26 @@
 class Solution {
+    public boolean validPath(int n, int[][] edges, int src, int dest) {
+        List<List<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
 
-    public void dfs(int node, boolean[] visited, ArrayList<ArrayList<Integer>> graph) {
-        visited[node] = true;
-        for (int nbr : graph.get(node)) {
-            if (!visited[nbr]) {
-                dfs(nbr, visited, graph);
-            }
+        for (int[] e : edges) {
+            adj.get(e[0]).add(e[1]);
+            adj.get(e[1]).add(e[0]);
         }
+
+        boolean[] visited = new boolean[n];
+        return dfs(src, dest, adj, visited);
     }
 
-    public boolean validPath(int n, int[][] edges, int source, int destination) {
-        boolean[] visited = new boolean[n];
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+    private boolean dfs(int node, int dest, List<List<Integer>> adj, boolean[] visited) {
+        if (node == dest) return true;
+        visited[node] = true;
 
-        // Initialize adjacency list
-        for (int i = 0; i < n; i++) {
-            graph.add(new ArrayList<>());
+        for (int nei : adj.get(node)) {
+            if (!visited[nei]) {
+                if (dfs(nei, dest, adj, visited)) return true;
+            }
         }
-
-        // Build the graph (undirected)
-        for (int i = 0; i < edges.length; i++) {
-            int u = edges[i][0];
-            int v = edges[i][1];
-            graph.get(u).add(v);
-            graph.get(v).add(u);
-        }
-
-        // Run DFS
-        dfs(source, visited, graph);
-
-        return visited[destination];
+        return false;
     }
 }
