@@ -1,17 +1,21 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        int origNum = x;
-        int revNum = 0;
-        while (x > 0) {
-            int lastDig = x % 10;
-            revNum = (revNum * 10) + lastDig;
-            x = x / 10;
+        String str = String.valueOf(x);//"123"
+
+        char[] arr = str.toCharArray(); // 1,2,3,1
+
+        int left = 0;
+        int right = arr.length - 1;
+
+        while(left <= right){
+            if(arr[left] != arr[right]){
+                return false;
+            }
+
+            left++;
+            right--;
         }
 
-        if (revNum == origNum) {
-            return true;
-        }
-
-        return false;
+        return true;
     }
 }
