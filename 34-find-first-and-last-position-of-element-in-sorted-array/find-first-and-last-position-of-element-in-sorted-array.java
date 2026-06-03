@@ -1,50 +1,47 @@
 class Solution {
-    private int firstOcc(int[] nums,int target){
+    public static int firstPosition(int[] nums, int target){
         int start = 0;
         int end = nums.length - 1;
+        int result = -1;
 
-        int res = -1;
-        
-        while(start<=end){
-            int mid = start + (end-start)/2;
-            if(target == nums[mid]){
-                res = mid;
-                end = mid -1;
-            }else if(target < nums[mid]){
+        while(start <= end){
+            int mid = start + (end - start)/2;
+
+            if(nums[mid] == target){
+                result = mid;
+                end = mid - 1;
+            }else if(nums[mid] > target){
                 end = mid - 1;
             }else{
                 start = mid + 1;
             }
         }
-        return res;
+        return result;
     }
 
-        private int lastOcc(int[] nums,int target){
+    public static int lastPosition(int[] nums, int target){
         int start = 0;
         int end = nums.length - 1;
+        int result = -1;
 
-        int res = -1;
-        
-        while(start<=end){
-            int mid = start + (end-start)/2;
-            if(target == nums[mid]){
-                res = mid;
+        while(start <= end){
+            int mid = start + (end - start)/2;
+
+            if(nums[mid] == target){
+                result = mid;
                 start = mid + 1;
-            }else if(target < nums[mid]){
+            }else if(nums[mid] > target){
                 end = mid - 1;
             }else{
                 start = mid + 1;
             }
         }
-        return res;
+        return result;
     }
 
     public int[] searchRange(int[] nums, int target) {
-        int index1 = firstOcc(nums,target);
-        int index2 = lastOcc(nums,target);
-
-        int[] ans = {index1,index2};
-
-        return ans;
+        int first = firstPosition(nums,target);
+        int last = lastPosition(nums,target);
+        return new int[] {first,last};
     }
 }
