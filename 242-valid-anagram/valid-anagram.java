@@ -1,23 +1,19 @@
 class Solution {
-    public boolean isAnagram(String s, String t) {
+    private HashMap<Character,Integer> freqMap(String str){
+        HashMap<Character, Integer> map = new HashMap<>();
 
-        if(s.length() != t.length()) return false;
-        HashMap<Character,Integer> freqMap = new HashMap<>();
-
-        for(char ch : s.toCharArray()){
-            freqMap.put(ch,freqMap.getOrDefault(ch,0)+1);
+        for (char ch : str.toCharArray()){
+            map.put(ch, map.getOrDefault(ch, 0 ) + 1);
         }
 
-        for (char ch : t.toCharArray()) {
-            if (!freqMap.containsKey(ch)) {
-                return false; // character not in s
-            }
-            freqMap.put(ch, freqMap.get(ch) - 1);
-            if (freqMap.get(ch) < 0) {
-                return false; // more occurrences in t than s
-            }
-        }
-
-       return true;
+        return map;
     }
+
+    public boolean isAnagram(String s, String t) {
+        HashMap<Character,Integer> freqMap1 = freqMap(s);
+        HashMap<Character,Integer> freqMap2 = freqMap(t);
+
+        return freqMap1.equals(freqMap2);
+    }
+
 }
