@@ -6,4 +6,4 @@ FROM Employee e
 LEFT JOIN Bonus b 
 ON e.empID = b.empID
 WHERE b.bonus < 1000 
-    OR b.bonus is NULL
+    OR b.bonus is NULL;
