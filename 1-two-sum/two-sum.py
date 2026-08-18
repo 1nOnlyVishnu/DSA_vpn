@@ -1,21 +1,15 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        """
-        target , x , y
-        x + y = target
-        if i fix x using the data from array,then we only hv to find y
-        y = target - x
-        input = array (nums) and target
-        HashMap { key : value}
-        element - index
-
-        """
-
-        map = {}
-        for i in range(len(nums)):
-            y = target - nums[i]
-            if y in map:
-                return [map[y] , i]
-            map[nums[i]] = i
+        hash_map = {}
+        # x + y = target
+        # y = target - x
+        for index, num in enumerate(nums):
+            y = target - num
+            if y in hash_map:
+                return [hash_map[y] , index]
+            hash_map[num] = index
         
         return []
+
+
+        
