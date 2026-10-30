@@ -1,5 +1,7 @@
 class Solution:
     def numJewelsInStones(self, jewels: str, stones: str) -> int:
+        if stones == "" or jewels == "":
+            return 0
         seen = set(jewels)
         count = 0
         for stone in stones:
