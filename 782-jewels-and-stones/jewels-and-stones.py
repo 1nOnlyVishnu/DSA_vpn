@@ -1,11 +1,9 @@
 class Solution:
     def numJewelsInStones(self, jewels: str, stones: str) -> int:
-        i = 0
-        j = 0
+        seen = set(jewels)
         count = 0
-        for i in jewels:
-            for j in stones:
-                if i == j:
-                    count += 1
-
+        for stone in stones:
+            if stone in seen:
+                count += 1
+        
         return count
